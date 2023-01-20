@@ -9,9 +9,21 @@ function App() {
   useEffect(() => {
     const lastIndex = people.length - 1;
     if (index < 0) {
-      setIndex(lastIndex)
+      setIndex(lastIndex);
+    }
+    if (index > lastIndex) {
+      setIndex(0);
     }
   }, [index, people])
+
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIndex(index + 1)
+    }, 3000);
+    return () => clearInterval(slider);
+  }, [index]);
+
+
   return (
     <section className='section'>
       <div className="title">
